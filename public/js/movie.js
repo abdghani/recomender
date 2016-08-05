@@ -9,8 +9,8 @@ app.controller('movie',function ($scope,$http,$window) {
 	$scope.search_movieId
 	$scope.allMovies = []
 	$scope.allMovies_index = []
-	var baseurl = 'http://localhost:2000';
-	var baseurl2 = 'http://localhost:5000';
+	var baseurl = 'http://ec2-52-42-227-51.us-west-2.compute.amazonaws.com:2000';
+	var baseurl2 = 'http://ec2-52-42-227-51.us-west-2.compute.amazonaws.com:5000';
 	var url = baseurl+'/api'
 
 	$http.jsonp("http://www.omdbapi.com/?t=batman&y=&plot=large&r=json&callback=JSON_CALLBACK&page=10")
@@ -18,8 +18,10 @@ app.controller('movie',function ($scope,$http,$window) {
 		$scope.movies = response;
 	});
 
+	console.log(baseurl)
 	$http.get(url+'/movies/all')
 		.success(function(data){
+		
 			for (i in data){
 				$scope.allMovies.push(data[i]['title'])
 				$scope.allMovies_index.push(i)
