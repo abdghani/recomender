@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html ng-app="movie_app">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>Recomender System</title>
+	<% include header.ejs %>
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top"  ng-controller="movie">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i>  <span class="light">RecSYS</span> 
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                   
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading"></h1>
+                        <div class="form-group">
+						  <input type="text" class="form-control input-lg" ng-model="newMovie.name" style="text-align:center;font-size: 32px;font-style: bold">
+						</div>
+						<h2>
+							<a href="#movie_result" ng-click="findmovie(newMovie)">
+	                           SEARCH
+	                        </a>
+						</h2>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="movie_result" class="container content-section text-center" >
+        <div class="row">
+            <div class="col-lg-6">
+                <img src={{movies.Poster}} class="img-rounded" alt="Cinque Terre" width="400" height="600">
+                <br><br><br><br><br><br><br>
+            </div>
+            <div class="col-lg-6">
+            <div id="movie_result_ptr"></div>
+            	<table>
+            		<tbody>
+            			<tr>
+            				<td colspan="2" align="center"><h1>{{movies.Title}}</h1></td>
+            			</tr>
+            			<tr>
+            				<td><h2>YEAR:</h2></td>
+            				<td><h3>{{movies.Year}}</h3></td>
+            			</tr>
+            			<tr>
+            				<td><h2>RELEASED:</h2></td>
+            				<td><h3>{{movies.Released}}</h3></td>
+            			</tr>
+            			<tr>
+            				<td><h2>GENRE:</h2></td>
+            				<td><h3>{{movies.Genre}}</h3></td>
+            			</tr>
+            			<tr>
+            				<td><h2>DIRECTOR:</h2></td>
+            				<td><h3>{{movies.Director}}</h3></td>
+            			</tr>
+            			<tr>
+            				<td><h2>WRITER:</h2></td>
+            				<td><h3>{{movies.Writer}}</h3></td>
+            			</tr>
+            			<tr>
+            				<td><h2>AWARDS:</h2></td>
+            				<td><h3>{{movies.Awards}}</h3></td>
+            			</tr>
+            			<tr>
+            				<td><h2>RTINGS:</h2></td>
+            				<td><h3>{{movies.imdbRating}}</h3></td>
+            			</tr>
+            			<tr>
+            				<td align="center" colspan="2"><h3>{{movies.Plot}}</h3></td>
+            			</tr>
+            		</tbody>
+            	</table>
+            </div>
+        </div>
+        
+    </section>
+
+   
+    <section id="rec_movies" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+            	<h2>SIMILAR MOVIES</h2>
+            	<div ng-repeat = "recmovie in rec_movies">
+            		<div class="col-lg-2 col-lg-offset-1">
+	                   <img ng-src='/images/dwn/'+{{recmovie.id}}+'.jpg' class="img-rounded" width="200" height="300">
+	                   		<br>{{recmovie.name}}
+	                </div>
+            	</div>
+	                
+            </div>
+        </div>
+       
+    </section>
+     <div id="rec_movies_ptr"></div>
+</body>
+
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html ng-app="movie_app">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+	<title>Recommender System</title>
+	<% include header.ejs %>
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top"  ng-controller="movie">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i>  <span class="light" style="color:#00264d;font-size: 36px">RecSYS</span> 
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                <form>
+                    <div class="col-md-8 col-md-offset-2">
+                        
+                        <div class="form-group">
+                          <input type="text" class="form-control input-lg" ng-model="newMovie.name" style="text-align:center;font-size: 32px;font-style: bold" bs-options="movie for movie in allMovies" bs-typeahead placeholder="TYPE A MOVIE NAME" >
+                        </div>
+                        <h2>
+                            <a href="#movie_result" ng-click="findmovie(newMovie)" >
+                                <button type="submit" class="btn btn-lg" style="color:#000d1a;background-color:#99ccff"> SEARCH </button>
+                            </a>
+                        </h2>
+                        
+                    </div>
+                </form>
+                    
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Movie Details -->
+    <div id="movie_result_ptr"></div>
+    <section id="movie_result" class="container content-section text-center" ng-show="movie_result_show">
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <img ng-src='/images/dwn/{{search_movieId}}.jpg' class="img-rounded" alt="Cinque Terre" width="400" height="600">
+                <br><br><br><br><br><br><br>
+            </div>
+            <div class="col-lg-6">
+            	<table>
+            		<tbody>
+            			<tr>
+            				<td colspan="2" align="center"><h1>{{movies.Title}}</h1></td>
+            			</tr>
+            			<tr>
+            				<td><h4>YEAR:</h4></td>
+            				<td><h5>{{movies.Year}}</h5></td>
+            			</tr>
+            			<tr>
+            				<td><h4>RELEASED:</h4></td>
+            				<td><h5>{{movies.Released}}</h5></td>
+            			</tr>
+            			<tr>
+            				<td><h4>GENRE:</h4></td>
+            				<td><h5>{{movies.Genre}}</h5></td>
+            			</tr>
+            			<tr>
+            				<td><h4>DIRECTOR:</h4></td>
+            				<td><h5>{{movies.Director}}</h5></td>
+            			</tr>
+            			<tr>
+            				<td><h4>WRITER:</h4></td>
+            				<td><h5>{{movies.Writer}}</h5></td>
+            			</tr>
+            			<tr>
+            				<td><h4>AWARDS:</h4></td>
+            				<td><h5>{{movies.Awards}}</h5></td>
+            			</tr>
+            			<tr>
+            				<td><h4>RATINGS:</h4></td>
+            				<td><h5>{{movies.imdbRating}}</h5></td>
+            			</tr>
+            			<tr>
+            				<td align="center" colspan="2"><h3>{{movies.Plot}}</h3></td>
+            			</tr>
+            		</tbody>
+            	</table>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Recommeder Section -->
+    <section id="rec_movies" class="content-section text-center" ng-show="rec_movies_show">
+        <div class="download-section">
+            <div class="container">
+            	<h2>SIMILAR MOVIES</h2>
+
+            	<div ng-repeat = "recmovie in rec_movies">
+                    <a ng-click="findmovie(recmovie)">
+                        <div class="col-md-2 " >
+                            <img ng-src='/images/dwn/{{recmovie.id}}.jpg' class="img-rounded" width="200" height="300" >
+                            <br>{{recmovie.name}}
+                        </div>
+                    </a>
+            		
+            	</div>
+	            <div id="rec_movies_ptr"></div>    
+            </div>
+        </div>
+    </section>
+     
+</body>
+
+</html>

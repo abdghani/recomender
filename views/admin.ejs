@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="admin">
+<head>
+	<title>ADMIN SECTION</title>
+	<% include header.ejs %>
+</head>
+<body ng-controller="admin_ctrl">
+	<div class="container">
+			<h1>ADMIN CONTROLL PANEL</h1>
+			<!--MOVIE API SECTION-->
+			<div class="alert alert-info">
+				<h3 style="text-align:center;">Movie Api</h3>	
+			</div>
+
+			<div class="well well-sm" ng-repeat="mapi in movieapi">
+				{{mapi.description.detail}}<span class="pull-right">{{mapi.description.url}}</span>
+			</div>
+			
+
+			<!-- Ratings Api section-->
+			<div class="alert alert-info">
+				<h3 style="text-align:center;">Ratings Api</h3>	
+			</div>
+
+			<div class="well well-sm" ng-repeat="rapi in ratingapi">
+				{{rapi.description.detail}}<span class="pull-right">{{rapi.description.url}}</span>
+			</div>	
+
+
+
+			<!-- Imdb Api section-->
+			<div class="alert alert-info">
+				<h3 style="text-align:center;">Imdb Api</h3>	
+			</div>
+
+			<div class="well well-sm" ng-repeat="iapi in imdbapi">
+				{{iapi.description.detail}}<span class="pull-right">{{iapi.description.url}}</span>
+			</div>	
+		
+	</div>
+</body>
+</html>
