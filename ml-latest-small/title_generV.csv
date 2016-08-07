@@ -1,4 +1,4 @@
-movieId,title,vectors
+movieId,title,genresV
 1,toy story,0|0|0|0|0|0|0|0|1|0|1|0|1|0|0|1|0|1|0|0
 2,jumanji,0|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|0|1|0|0
 3,grumpier old men,0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|0

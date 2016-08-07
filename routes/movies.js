@@ -5,6 +5,7 @@ var moviesdb = require('../models/movies.js');
 var links = require('../models/links.js');
 var api = require('../models/api.js')
 var meansize = require('../models/meansize.js');
+var genv = require('../models/genv.js');
 var imdb = require('imdb')
 
 //list of movie apis
@@ -83,7 +84,7 @@ router.get("/:movieid/genreV",function(req,res){
 
 //get genres of all movies
 router.get('/genreV/all',function(req,res){
-	moviesdb.find({},{movieId:1,genresV:1,_id:0},function(err,data){
+	genv.find({},{movieId:1,title:1,genresV:1,_id:0},function(err,data){
 		res.json(data)
 	})
 })
