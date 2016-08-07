@@ -36,6 +36,7 @@ router.get("/:movieid",function(req,res){
 				error:"unable to fetch data"
 			})
 		}
+		if(data1.imdbid!=null){
 		var x = data1.imdbId
 		while(x.length<7){
 				x = '0'+x
@@ -43,6 +44,12 @@ router.get("/:movieid",function(req,res){
 		x='tt'+x
 		data1.imdbId=x
 		res.json(data1)
+	    }
+	    else{
+	    	res.json({
+				error:"unable to fetch data"
+			})
+	    }
 	})
 })
 
